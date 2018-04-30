@@ -8,9 +8,11 @@ import ar.com.tuchorc.service.StringListService;
 import io.swagger.annotations.*;
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.ws.rs.core.Response;
+import java.security.Principal;
 
 @Api(value = "String-List", description = "String list controller")
 @RestController
@@ -24,19 +26,23 @@ public class StringListRestService {
         this.stringListService = stringListService;
     }
 
+    @RequestMapping("/user")
+    public Principal user(Principal principal) {
+        return principal;
+    }
+
     @GetMapping(value = "/all")
     @ApiOperation(value = "Get all items from the list",
             notes = "Returns all the items from the list",
             response = Item.class)
     @ApiResponses({@ApiResponse(code = 200, message = "Ok"),
             @ApiResponse(code = 500, message = "Other generic errors")})
-    public Response getAll() {
+    public ResponseEntity getAll() {
         try {
-            return Response.ok(stringListService.getAll()).build();
+            return ResponseEntity.ok(stringListService.getAll());
         } catch (ServiceException _ex) {
             logger.log(Logger.Level.ERROR, "Error retrieving the item list: " + _ex.toString());
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new ServiceError(_ex.getErrorCode().getErrorCode(), _ex.getMessage()))
-                    .build();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ServiceError(_ex.getErrorCode().getErrorCode(), _ex.getMessage()));
         }
     }
 
@@ -46,13 +52,12 @@ public class StringListRestService {
             response = Item.class)
     @ApiResponses({@ApiResponse(code = 200, message = "Ok"),
             @ApiResponse(code = 500, message = "Other generic errors")})
-    public Response getAllREverse() {
+    public ResponseEntity getAllReverse() {
         try {
-            return Response.ok(stringListService.getAllReverse()).build();
+            return ResponseEntity.ok(stringListService.getAllReverse());
         } catch (ServiceException _ex) {
             logger.log(Logger.Level.ERROR, "Error retrieving the item list: " + _ex.toString());
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new ServiceError(_ex.getErrorCode().getErrorCode(), _ex.getMessage()))
-                    .build();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ServiceError(_ex.getErrorCode().getErrorCode(), _ex.getMessage()));
         }
     }
 
@@ -63,11 +68,10 @@ public class StringListRestService {
     @ApiResponses({@ApiResponse(code = 200, message = "Ok"),
             @ApiResponse(code = 400, message = "Bad request"),
             @ApiResponse(code = 500, message = "Other generic errors")})
-    public Response getById(@ApiParam(value = "id", name = "id", required = true) @PathVariable Long id) {
+    public ResponseEntity getById(@ApiParam(value = "id", name = "id", required = true) @PathVariable Long id) {
         if (id == null || id == 0L) {
             logger.log(Logger.Level.ERROR, "Missing Parameter");
-            return Response.status(Response.Status.BAD_REQUEST).entity(new ServiceError(ErrorCode.INVALID_PARAMS.getErrorCode(), "Missing Parameter"))
-                    .build();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ServiceError(ErrorCode.INVALID_PARAMS.getErrorCode(), "Missing Parameter"));
         }
 
         try {
@@ -75,15 +79,13 @@ public class StringListRestService {
 
             if (item == null) {
                 logger.log(Logger.Level.WARN, "No Data Found");
-                return Response.ok(new ServiceError(ErrorCode.NO_DATA_FOUND.getErrorCode(), "No data found"))
-                        .build();
+                return ResponseEntity.ok(new ServiceError(ErrorCode.NO_DATA_FOUND.getErrorCode(), "No data found"));
             }
 
-            return Response.ok(item).build();
+            return ResponseEntity.ok(item);
         } catch (ServiceException _ex) {
             logger.log(Logger.Level.ERROR, "Error retrieving the item list: " + _ex.toString());
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new ServiceError(_ex.getErrorCode().getErrorCode(), _ex.getMessage()))
-                    .build();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ServiceError(_ex.getErrorCode().getErrorCode(), _ex.getMessage()));
         }
     }
 
@@ -94,19 +96,17 @@ public class StringListRestService {
     @ApiResponses({@ApiResponse(code = 200, message = "Ok"),
             @ApiResponse(code = 400, message = "Bad request"),
             @ApiResponse(code = 500, message = "Other generic errors")})
-    public Response insert(@RequestBody Item item) {
+    public ResponseEntity insert(@RequestBody Item item) {
         if (item == null) {
             logger.log(Logger.Level.ERROR, "Missing Payload");
-            return Response.status(Response.Status.BAD_REQUEST).entity(new ServiceError(ErrorCode.INVALID_PARAMS.getErrorCode(), "Missing payload"))
-                    .build();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ServiceError(ErrorCode.INVALID_PARAMS.getErrorCode(), "Missing payload"));
         }
 
         try {
-            return Response.ok(stringListService.insert(item)).build();
+            return ResponseEntity.ok(stringListService.insert(item));
         } catch (ServiceException _ex) {
             logger.log(Logger.Level.ERROR, "Error inserting the item: " + _ex.toString());
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new ServiceError(_ex.getErrorCode().getErrorCode(), _ex.getMessage()))
-                    .build();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ServiceError(_ex.getErrorCode().getErrorCode(), _ex.getMessage()));
         }
     }
 
@@ -117,19 +117,17 @@ public class StringListRestService {
     @ApiResponses({@ApiResponse(code = 200, message = "Ok"),
             @ApiResponse(code = 400, message = "Bad request"),
             @ApiResponse(code = 500, message = "Other generic errors")})
-    public Response update(@RequestBody Item item) {
+    public ResponseEntity update(@RequestBody Item item) {
         if (item == null) {
             logger.log(Logger.Level.ERROR, "Missing Payload");
-            return Response.status(Response.Status.BAD_REQUEST).entity(new ServiceError(ErrorCode.INVALID_PARAMS.getErrorCode(), "Missing payload"))
-                    .build();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ServiceError(ErrorCode.INVALID_PARAMS.getErrorCode(), "Missing payload"));
         }
 
         try {
-            return Response.ok(stringListService.update(item)).build();
+            return ResponseEntity.ok(stringListService.update(item));
         } catch (ServiceException _ex) {
             logger.log(Logger.Level.ERROR, "Error updating the item: " + _ex.toString());
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new ServiceError(_ex.getErrorCode().getErrorCode(), _ex.getMessage()))
-                    .build();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ServiceError(_ex.getErrorCode().getErrorCode(), _ex.getMessage()));
         }
     }
 
@@ -140,19 +138,17 @@ public class StringListRestService {
     @ApiResponses({@ApiResponse(code = 200, message = "Ok"),
             @ApiResponse(code = 400, message = "Bad request"),
             @ApiResponse(code = 500, message = "Other generic errors")})
-    public Response delete(@ApiParam(value = "id", name = "id", required = true) @PathVariable Long id) {
+    public ResponseEntity delete(@ApiParam(value = "id", name = "id", required = true) @PathVariable Long id) {
         if (id == null || id == 0L) {
             logger.log(Logger.Level.ERROR, "Missing Parameter");
-            return Response.status(Response.Status.BAD_REQUEST).entity(new ServiceError(ErrorCode.INVALID_PARAMS.getErrorCode(), "Missing Parameter"))
-                    .build();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ServiceError(ErrorCode.INVALID_PARAMS.getErrorCode(), "Missing Parameter"));
         }
 
         try {
-            return Response.ok(stringListService.delete(id)).build();
+            return ResponseEntity.ok(stringListService.delete(id));
         } catch (ServiceException _ex) {
             logger.log(Logger.Level.ERROR, "Error deleting the item: " + _ex.toString());
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(new ServiceError(_ex.getErrorCode().getErrorCode(), _ex.getMessage()))
-                    .build();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ServiceError(_ex.getErrorCode().getErrorCode(), _ex.getMessage()));
         }
     }
 }

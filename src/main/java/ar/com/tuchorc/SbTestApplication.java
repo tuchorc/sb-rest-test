@@ -11,8 +11,7 @@ import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.annotation.PropertySources;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 /**
  * Created by fmq on 3/22/17.
@@ -22,7 +21,7 @@ import org.springframework.context.annotation.PropertySources;
 @EnableOAuth2Sso
 @MapperScan("ar.com.tuchorc.persistence.mapper")
 @ComponentScan({"ar.com.tuchorc"})
-public class SbTestApplication {
+public class SbTestApplication extends WebSecurityConfigurerAdapter {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -34,5 +33,18 @@ public class SbTestApplication {
     public JacksonJaxbJsonProvider jacksonJaxbJsonProvider() {
         return new JacksonJaxbJsonProvider();
     }
+//
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http.authorizeRequests()
+//                .anyRequest().authenticated()
+//                .and()
+//                .formLogin()
+//                .loginPage("/login")
+//                .permitAll()
+//                .and()
+//                .logout()
+//                .permitAll();
+//    }
 
 }

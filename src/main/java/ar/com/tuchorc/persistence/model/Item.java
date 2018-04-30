@@ -11,11 +11,11 @@ import java.util.Objects;
  *
  * @author tuchorc
  */
-@ApiModel(description="Each Item of the list.")
+@ApiModel(description = "Each Item of the list.")
 public class Item implements Serializable {
     private Long id;
 
-    @ApiModelProperty(notes="Textual description up to 25 chars")
+    @ApiModelProperty(notes = "Textual description up to 25 chars")
     private String description;
 
     public Long getId() {

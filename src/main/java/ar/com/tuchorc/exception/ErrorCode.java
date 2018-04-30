@@ -10,11 +10,11 @@ public enum ErrorCode {
 
     private int errorCode;
 
-    public int getErrorCode() {
-        return errorCode;
-    }
-
     private ErrorCode(int errorCode) {
         this.errorCode = errorCode;
+    }
+
+    public int getErrorCode() {
+        return errorCode;
     }
 }
