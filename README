@@ -1,0 +1,16 @@
+mvn -s settings.xml clean package
+
+Para Base de datos local:
+
+$ java -jar -Dspring.profiles.active=PROFILE PATH/TO/DmfasKeygenStandaloneApp-1.0.0.jar USERNAME
+
+ex: local profile (default)
+$ java -jar -Dspring.profiles.active=local target/DmfasKeygenStandaloneApp-1.0.0.jar DMFASVWS
+$ java -jar DmfasKeygenStandaloneApp-1.0.0.jar.jar USERNAME
+
+ex: albania profile
+$ java -jar -Dspring.profiles.active=albania target/DmfasKeygenStandaloneApp-1.0.0.jar.jar DMFASVWS
+
+Ojo, siempre usa el 1521
+
+Si no se pasa USERNAME, DMFASVWS es el default
