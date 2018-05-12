@@ -18,10 +18,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  */
 @SpringBootApplication
 @EnableAutoConfiguration
-@EnableOAuth2Sso
 @MapperScan("ar.com.tuchorc.persistence.mapper")
 @ComponentScan({"ar.com.tuchorc"})
-public class SbTestApplication extends WebSecurityConfigurerAdapter {
+public class SbTestApplication {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -33,18 +32,5 @@ public class SbTestApplication extends WebSecurityConfigurerAdapter {
     public JacksonJaxbJsonProvider jacksonJaxbJsonProvider() {
         return new JacksonJaxbJsonProvider();
     }
-//
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//        http.authorizeRequests()
-//                .anyRequest().authenticated()
-//                .and()
-//                .formLogin()
-//                .loginPage("/login")
-//                .permitAll()
-//                .and()
-//                .logout()
-//                .permitAll();
-//    }
 
 }
