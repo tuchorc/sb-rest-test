@@ -145,7 +145,7 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/sbtest/id/2",
+					"raw": "http://localhost:8080/sbtest/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -153,7 +153,6 @@
 					"port": "8080",
 					"path": [
 						"sbtest",
-						"id",
 						"2"
 					]
 				}
@@ -923,9 +922,9 @@
 	],
 	"variable": [
 		{
-			"id": "c7a6a164-3f32-4186-a8df-ea2a0fcc4859",
+			"id": "de27bb80-f979-42ad-8967-3b855a82690f",
 			"key": "access-token",
-			"value": "32b4ed9a-79eb-4a9a-9409-c48f96f07352",
+			"value": "d1998f0c-33c5-441c-9411-6c9fe5fd6da4",
 			"type": "string",
 			"description": ""
 		}

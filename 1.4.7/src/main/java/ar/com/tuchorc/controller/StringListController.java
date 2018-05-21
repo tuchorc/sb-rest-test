@@ -57,7 +57,7 @@ public class StringListController {
 		}
 	}
 
-	@GetMapping(value = "/id/{id}")
+	@GetMapping(value = "/{id}")
 	@ApiOperation(value = "Get all items from the list",
 			notes = "Returns all the items from the list",
 			response = Item.class)
