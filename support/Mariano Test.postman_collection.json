@@ -6,26 +6,45 @@
 	},
 	"item": [
 		{
-			"name": "User",
+			"name": "OAUTH",
 			"request": {
-				"method": "GET",
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "s3cr3t",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "sbtest",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
 				"header": [
 					{
-						"key": "Cookie",
-						"value": "JSESSIONID=4FB663B65ACC7E62CBD4F8D36FBA2876"
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
 					}
 				],
-				"body": {},
+				"body": {
+					"mode": "raw",
+					"raw": "grant_type=password&username=mariano@tuchorc.com.ar&password=password"
+				},
 				"url": {
-					"raw": "http://localhost:8080/sb-rest/user",
+					"raw": "http://localhost:8080/sbtest/oauth/token",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"sb-rest",
-						"user"
+						"sbtest",
+						"oauth",
+						"token"
 					]
 				}
 			},
@@ -34,22 +53,33 @@
 		{
 			"name": "Get All",
 			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{access-token}}",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
-				"header": [
-					{
-						"key": "Cookie",
-						"value": "JSESSIONID=D8D3737E22C4193A6E2AA21C01BDF6CF"
-					}
-				],
+				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/all",
+					"raw": "http://localhost:8080/sbtest/all",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
+						"sbtest",
 						"all"
 					]
 				}
@@ -59,22 +89,33 @@
 		{
 			"name": "Get All Reverse",
 			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{access-token}}",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
-				"header": [
-					{
-						"key": "Cookie",
-						"value": "JSESSIONID=D8D3737E22C4193A6E2AA21C01BDF6CF"
-					}
-				],
+				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/all/reverse",
+					"raw": "http://localhost:8080/sbtest/all/reverse",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
+						"sbtest",
 						"all",
 						"reverse"
 					]
@@ -85,22 +126,33 @@
 		{
 			"name": "Get By ID",
 			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{access-token}}",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
-				"header": [
-					{
-						"key": "Cookie",
-						"value": "JSESSIONID=D8D3737E22C4193A6E2AA21C01BDF6CF"
-					}
-				],
+				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://localhost:8080/id/2",
+					"raw": "http://localhost:8080/sbtest/id/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
+						"sbtest",
 						"id",
 						"2"
 					]
@@ -111,15 +163,26 @@
 		{
 			"name": "Insert 1 No id",
 			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{access-token}}",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
 						"value": "application/json"
-					},
-					{
-						"key": "Cookie",
-						"value": "JSESSIONID=7131E5FD4F21EB4B1FB039A9BC9A1138"
 					}
 				],
 				"body": {
@@ -127,13 +190,14 @@
 					"raw": "{\n    \"description\": \"Escritorio\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/",
+					"raw": "http://localhost:8080/sbtest/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
+						"sbtest",
 						""
 					]
 				}
@@ -143,29 +207,41 @@
 		{
 			"name": "Insert 2 Id 0",
 			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{access-token}}",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
 						"value": "application/json"
-					},
-					{
-						"key": "Cookie",
-						"value": "JSESSIONID=D737910F9E02265DF1FD3BB9F12BD6A5"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"id\": 0,\n    \"description\": \"Pintureria\"\n}"
+					"raw": "{\n  \"itemId\": 0,\n  \"description\": \"Pintureria\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/",
+					"raw": "http://localhost:8080/sbtest/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
+						"sbtest",
 						""
 					]
 				}
@@ -175,15 +251,26 @@
 		{
 			"name": "Insert 3 Already Exists",
 			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{access-token}}",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
 						"value": "application/json"
-					},
-					{
-						"key": "Cookie",
-						"value": "JSESSIONID=D737910F9E02265DF1FD3BB9F12BD6A5"
 					}
 				],
 				"body": {
@@ -191,13 +278,14 @@
 					"raw": "{\n    \"description\": \"Barca\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/",
+					"raw": "http://localhost:8080/sbtest/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
+						"sbtest",
 						""
 					]
 				}
@@ -207,29 +295,41 @@
 		{
 			"name": "Insert Error ID Not empty",
 			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{access-token}}",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
 						"value": "application/json"
-					},
-					{
-						"key": "Cookie",
-						"value": "JSESSIONID=D737910F9E02265DF1FD3BB9F12BD6A5"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"id\": 10,\n    \"description\": \"Pintureria\"\n}"
+					"raw": "{\n  \"itemId\": 10,\n  \"description\": \"Pintureria\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/",
+					"raw": "http://localhost:8080/sbtest/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
+						"sbtest",
 						""
 					]
 				}
@@ -239,29 +339,41 @@
 		{
 			"name": "Insert Error Description Too long",
 			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{access-token}}",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
 						"value": "application/json"
-					},
-					{
-						"key": "Cookie",
-						"value": "JSESSIONID=D737910F9E02265DF1FD3BB9F12BD6A5"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"id\": null,\n    \"description\": \"In case there is a configured databaseIdProvider, MyBatis will load all statements with no databaseId attribute or with a databaseId that matches the current one. If case the same statement if found with and without the databaseId the latter will be discarded. \"\n}"
+					"raw": "{\n  \"itemId\": null,\n  \"description\": \"In case there is a configured databaseIdProvider, MyBatis will load all statements with no databaseId attribute or with a databaseId that matches the current one. If case the same statement if found with and without the databaseId the latter will be discarded. \"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/",
+					"raw": "http://localhost:8080/sbtest/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
+						"sbtest",
 						""
 					]
 				}
@@ -271,29 +383,41 @@
 		{
 			"name": "Insert Error Description Missing",
 			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{access-token}}",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [
 					{
 						"key": "Content-Type",
 						"value": "application/json"
-					},
-					{
-						"key": "Cookie",
-						"value": "JSESSIONID=D737910F9E02265DF1FD3BB9F12BD6A5"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"id\": null,\n    \"description\": \"      \"\n}"
+					"raw": "{\n  \"itemId\": null,\n  \"description\": \"      \"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/",
+					"raw": "http://localhost:8080/sbtest/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
+						"sbtest",
 						""
 					]
 				}
@@ -303,29 +427,41 @@
 		{
 			"name": "Update",
 			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{access-token}}",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
 				"method": "PUT",
 				"header": [
 					{
 						"key": "Content-Type",
 						"value": "application/json"
-					},
-					{
-						"key": "Cookie",
-						"value": "JSESSIONID=D737910F9E02265DF1FD3BB9F12BD6A5"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\": 10,\n    \"description\": \"Racing\"\n}"
+					"raw": "{\n    \"itemId\": 10,\n    \"description\": \"Racing\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/",
+					"raw": "http://localhost:8080/sbtest/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
+						"sbtest",
 						""
 					]
 				}
@@ -335,29 +471,41 @@
 		{
 			"name": "Update Error ID Missing",
 			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{access-token}}",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
 				"method": "PUT",
 				"header": [
 					{
 						"key": "Content-Type",
 						"value": "application/json"
-					},
-					{
-						"key": "Cookie",
-						"value": "JSESSIONID=D737910F9E02265DF1FD3BB9F12BD6A5"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\": null,\n    \"description\": \"Racing\"\n}"
+					"raw": "{\n    \"itemId\": null,\n    \"description\": \"Racing\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/",
+					"raw": "http://localhost:8080/sbtest/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
+						"sbtest",
 						""
 					]
 				}
@@ -367,29 +515,41 @@
 		{
 			"name": "Update Error ID Unexistent",
 			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{access-token}}",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
 				"method": "PUT",
 				"header": [
 					{
 						"key": "Content-Type",
 						"value": "application/json"
-					},
-					{
-						"key": "Cookie",
-						"value": "JSESSIONID=D737910F9E02265DF1FD3BB9F12BD6A5"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\": -1,\n    \"description\": \"Racing Club\"\n}"
+					"raw": "{\n    \"itemId\": -1,\n    \"description\": \"Racing Club\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/",
+					"raw": "http://localhost:8080/sbtest/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
+						"sbtest",
 						""
 					]
 				}
@@ -399,29 +559,41 @@
 		{
 			"name": "Update Error Description Missing",
 			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{access-token}}",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
 				"method": "PUT",
 				"header": [
 					{
 						"key": "Content-Type",
 						"value": "application/json"
-					},
-					{
-						"key": "Cookie",
-						"value": "JSESSIONID=D737910F9E02265DF1FD3BB9F12BD6A5"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\": 10,\n    \"description\": \"\"\n}"
+					"raw": "{\n    \"itemId\": 10,\n    \"description\": \"\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/",
+					"raw": "http://localhost:8080/sbtest/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
+						"sbtest",
 						""
 					]
 				}
@@ -431,29 +603,41 @@
 		{
 			"name": "Update Error Description Too long",
 			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{access-token}}",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
 				"method": "PUT",
 				"header": [
 					{
 						"key": "Content-Type",
 						"value": "application/json"
-					},
-					{
-						"key": "Cookie",
-						"value": "JSESSIONID=D737910F9E02265DF1FD3BB9F12BD6A5"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\": 10,\n    \"description\": \"Racing Club de Avellaneda El Primer Grande\"\n}"
+					"raw": "{\n    \"itemId\": 10,\n    \"description\": \"Racing Club de Avellaneda El Primer Grande\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/",
+					"raw": "http://localhost:8080/sbtest/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
+						"sbtest",
 						""
 					]
 				}
@@ -463,29 +647,41 @@
 		{
 			"name": "Update Error Description Duplicated",
 			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{access-token}}",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
 				"method": "PUT",
 				"header": [
 					{
 						"key": "Content-Type",
 						"value": "application/json"
-					},
-					{
-						"key": "Cookie",
-						"value": "JSESSIONID=D737910F9E02265DF1FD3BB9F12BD6A5"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\": 10,\n    \"description\": \"Barca\"\n}"
+					"raw": "{\n    \"itemId\": 10,\n    \"description\": \"Barca\"\n}"
 				},
 				"url": {
-					"raw": "http://localhost:8080/",
+					"raw": "http://localhost:8080/sbtest/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
+						"sbtest",
 						""
 					]
 				}
@@ -495,30 +691,36 @@
 		{
 			"name": "Delete",
 			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{access-token}}",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
 				"method": "DELETE",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Cookie",
-						"value": "JSESSIONID=D737910F9E02265DF1FD3BB9F12BD6A5"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/id/14",
+					"raw": "http://localhost:8080/sbtest/14",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"id",
+						"sbtest",
 						"14"
 					]
 				}
@@ -528,30 +730,36 @@
 		{
 			"name": "Delete (nothing to delete)",
 			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{access-token}}",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
 				"method": "DELETE",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Cookie",
-						"value": "JSESSIONID=D737910F9E02265DF1FD3BB9F12BD6A5"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/id/-1",
+					"raw": "http://localhost:8080/sbtest/-1",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"id",
+						"sbtest",
 						"-1"
 					]
 				}
@@ -561,30 +769,36 @@
 		{
 			"name": "Delete Error Missing ID",
 			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{access-token}}",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
 				"method": "DELETE",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Cookie",
-						"value": "JSESSIONID=D737910F9E02265DF1FD3BB9F12BD6A5"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/id/0",
+					"raw": "http://localhost:8080/sbtest/0",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"id",
+						"sbtest",
 						"0"
 					]
 				}
@@ -594,30 +808,36 @@
 		{
 			"name": "Delete Error Parse Id",
 			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{access-token}}",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
 				"method": "DELETE",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Cookie",
-						"value": "JSESSIONID=D737910F9E02265DF1FD3BB9F12BD6A5"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/id/A",
+					"raw": "http://localhost:8080/sbtest/A",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"id",
+						"sbtest",
 						"A"
 					]
 				}
@@ -627,35 +847,87 @@
 		{
 			"name": "Delete Error 404",
 			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "accessToken",
+							"value": "{{access-token}}",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
 				"method": "DELETE",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json"
-					},
-					{
-						"key": "Cookie",
-						"value": "JSESSIONID=4FB663B65ACC7E62CBD4F8D36FBA2876"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "raw",
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/id/",
+					"raw": "http://localhost:8080/sbtest/",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"id",
+						"sbtest",
 						""
 					]
 				}
 			},
 			"response": []
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "accessToken",
+				"value": "{{access-token}}",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "a2228009-ef94-423f-93c1-5d2922a0a76e",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "ab56745e-2d3e-46ad-ab27-0836f3ec9998",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "c7a6a164-3f32-4186-a8df-ea2a0fcc4859",
+			"key": "access-token",
+			"value": "32b4ed9a-79eb-4a9a-9409-c48f96f07352",
+			"type": "string",
+			"description": ""
 		}
 	]
 }
